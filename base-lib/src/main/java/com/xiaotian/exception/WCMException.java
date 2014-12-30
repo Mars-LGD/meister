@@ -7,33 +7,18 @@ import com.xiaotian.extend.CMyException;
 
 
 /**
- * <p>
- * Title: TRS 内容协作平台（TRS WCM）
- * </p>
- * <p>
- * Description:
- * </p>
- * <p>
- * WCM异常处理对象
- * </p>
- * <p>
- * Copyright: Copyright (c) 2001-2002 TRS信息技术有限公司
- * </p>
- * <p>
- * Company: TRS信息技术有限公司(www.trs.com.cn)
- * </p>
+ * WCM异常类型定义<BR>
  * 
- * @author TRS信息技术有限公司
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
-
 public class WCMException extends CMyException {
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 8819172007753214059L;
 
-    // 构造函数
+    private static final long serialVersionUID = 8819172007753214059L;
+    
+    private final static Logger logger = Logger.getLogger(WCMException.class
+            .getName());
+
     public WCMException(int _errNo) {
         super(_errNo);
     }
@@ -74,9 +59,6 @@ public class WCMException extends CMyException {
         errNo = ExceptionNumber.ERR_WCMEXCEPTION;
     }
 
-    private final static Logger logger = Logger.getLogger(WCMException.class
-            .getName());
-
     public static void catchException(String _strDesc, Exception _exCaught,
             boolean bSeverity) throws WCMException {
         // 错误输出到标准输出设备
@@ -85,5 +67,5 @@ public class WCMException extends CMyException {
         if (true == bSeverity) {
             throw new WCMException(1000, _strDesc, _exCaught);
         }
-    } // End:
+    }
 }
