@@ -13,8 +13,7 @@ import java.util.ResourceBundle;
 public class ExceptionMessages {
 	private static final String BUNDLE_NAME = "exception_messages";//$NON-NLS-1$
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-			.getBundle(BUNDLE_NAME);
+	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
 	private ExceptionMessages() {
 	}
@@ -22,7 +21,8 @@ public class ExceptionMessages {
 	/**
 	 * 通过ErrorNumber获取错误message
 	 * 
-	 * @param _nErrorNumber	错误编码
+	 * @param _nErrorNumber
+	 *            错误编码
 	 * @return
 	 */
 	public static String getString(int _nErrorNumber) {

@@ -252,14 +252,11 @@ public class CMyException extends Exception {
 	// test
 
 	public final static void main(String[] args) {
-		CMyException fire0 = new CMyException(ExceptionNumber.ERR_MYEXCEPTION,
-				"my exception 0");
+		CMyException fire0 = new CMyException(ExceptionNumber.ERR_MYEXCEPTION, "my exception 0");
 		// Exception ex = new Exception("I am root.", fire0 );
 		// Exception ex = new Exception("I am root." );
-		CMyException fire = new CMyException(ExceptionNumber.ERR_MYEXCEPTION,
-				"my exception 1", fire0);
-		CMyException fire2 = new CMyException(
-				ExceptionNumber.ERR_PARAM_INVALID, "my exception 2", fire);
+		CMyException fire = new CMyException(ExceptionNumber.ERR_MYEXCEPTION, "my exception 1", fire0);
+		CMyException fire2 = new CMyException(ExceptionNumber.ERR_PARAM_INVALID, "my exception 2", fire);
 		fire2.printStackTrace(System.out);
 
 		System.out.println("-------------------");
