@@ -1,4 +1,4 @@
-package com.xiaotian.lib;
+package com.xiaotian.asm;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
