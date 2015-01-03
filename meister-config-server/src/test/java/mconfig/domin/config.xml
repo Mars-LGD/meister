@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin version="1.0" id="db.connnection">
+	<extension element-class="org.xiaotian.config.BeanConfig">
+		<bean id="DBManager" class="com.trs.infra.persistent.db.DBManager" singleton="true" />
+		<bean id="DBConnectionMapper" class="com.trs.infra.persistent.db.DBConnectionMapper" singleton="true" />
+	</extension>
+</plugin>

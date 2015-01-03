@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+	<!--The Core Mapping BEGIN -->
+	<class name="org.xiaotian.config.bean.PluginConfig" identity="id">
+		<map-to xml="plugin" />
+		<field name="id">
+			<bind-xml name="id" node="attribute" />
+		</field>
+		<field name="name">
+			<bind-xml name="name" node="attribute" />
+		</field>
+		<field name="version">
+			<bind-xml name="version" node="attribute" />
+		</field>
+		<field name="extensions" type="org.xiaotian.config.bean.ExtensionConfigs" collection="collection">
+			<bind-xml name="extension" />
+		</field>
+	</class>
+	<class name="org.xiaotian.config.bean.ExtensionConfigs" identity="id" auto-complete="true">
+		<map-to xml="extension" />
+		<field name="id">
+			<bind-xml name="id" node="attribute" />
+		</field>
+		<field name="className">
+			<bind-xml name="element-class" node="attribute" />
+		</field>
+		<field name="configElements" type="org.xiaotian.config.bean.IConfigElement" collection="collection">
+			<bind-xml auto-naming="deriveByClass" />
+		</field>
+	</class>
+</mapping>

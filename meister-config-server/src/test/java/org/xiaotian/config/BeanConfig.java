@@ -4,7 +4,9 @@
  * Description:
  *      class BeanCfg
  */
-package org.xiaotian.config.bean;
+package org.xiaotian.config;
+
+import org.xiaotian.config.bean.IConfigElement;
 
 
 /**

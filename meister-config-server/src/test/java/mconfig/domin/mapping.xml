@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+	<class name="org.xiaotian.config.BeanConfig" identity="id" auto-complete="true">
+		<map-to xml="bean" />
+		<field name="id">
+			<bind-xml name="id" node="attribute" />
+		</field>
+		<field name="className">
+			<bind-xml name="class" node="attribute" />
+		</field>
+		<field name="singleton" type="boolean">
+			<bind-xml name="singleton" node="attribute" />
+		</field>
+	</class>
+</mapping>
