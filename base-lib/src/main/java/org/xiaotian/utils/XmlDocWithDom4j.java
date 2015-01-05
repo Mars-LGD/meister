@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -36,6 +37,13 @@ public class XmlDocWithDom4j {
 		SAXReader reader = new SAXReader();
 		reader.setValidation(false);
 		Document result = reader.read(_sXmlFile);
+		return result;
+	}
+	
+	public static Document parse(InputStream _inputStream) throws DocumentException {
+		SAXReader reader = new SAXReader();
+		reader.setValidation(false);
+		Document result = reader.read(_inputStream);
 		return result;
 	}
 

@@ -191,6 +191,9 @@ public class ExceptionNumber {
 
 	/** publish error: failed to published contents */
 	public final static int ERR_PUBLISH_PUBLISHED_CONTENTS = 238;
+	
+	// =========================900-1000(内部模块定义)=============================
+	public final static int ERR_MODULE_CONFIG=901;
 
 	// =========================================================================
 	// 1000以上，为WCM定义错误

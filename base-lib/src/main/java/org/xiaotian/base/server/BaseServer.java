@@ -243,5 +243,5 @@ public abstract class BaseServer implements IServer {
 
     protected abstract void doShutdown();
 
-    protected abstract boolean doStart() throws WCMException;
+    protected abstract boolean doStart() throws CMyException;
 }
