@@ -7,8 +7,6 @@ import java.util.HashMap;
 import org.apache.log4j.Logger;
 import org.xiaotian.config.bean.ConfigFile;
 import org.xiaotian.config.bean.ConfigFiles;
-import org.xiaotian.exception.WCMException;
-import org.xiaotian.extend.CMyException;
 import org.xiaotian.extend.CMyFile;
 
 /**
@@ -53,10 +51,10 @@ public class ConfigFilesFinder {
 	 * 得到已经组织好的配置文件集合
 	 * 
 	 * @return 包含config.xml - mapping.xml的CfgFiles对象
-	 * @throws WCMException
+	 * @throws ConfigException
 	 *             可能的文件读取错误
 	 */
-	public ConfigFiles getConfigFiles() throws WCMException {
+	public ConfigFiles getConfigFiles() throws ConfigException {
 		if (m_oConfigFiles == null) {
 			m_oConfigFiles = new ConfigFiles();
 
@@ -83,7 +81,7 @@ public class ConfigFilesFinder {
 	/**
 	 * 刷新
 	 */
-	public ConfigFiles refresh() throws CMyException {
+	public ConfigFiles refresh() throws ConfigException {
 		m_oConfigFiles = null;
 		return getConfigFiles();
 	}

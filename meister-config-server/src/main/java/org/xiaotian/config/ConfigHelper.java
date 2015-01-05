@@ -1,14 +1,14 @@
 package org.xiaotian.config;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.util.List;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.xiaotian.config.bean.ConfigFiles;
 import org.xiaotian.constants.ExceptionNumber;
-import org.xiaotian.extend.CMyException;
-import org.xiaotian.language.I18NMessage;
 import org.xiaotian.utils.XmlDocWithDom4j;
 import org.xml.sax.InputSource;
 
@@ -20,8 +20,7 @@ import org.xml.sax.InputSource;
  */
 public class ConfigHelper {
 
-	private static org.apache.log4j.Logger m_logger = org.apache.log4j.Logger
-			.getLogger(ConfigHelper.class);
+	private static org.apache.log4j.Logger m_logger = org.apache.log4j.Logger.getLogger(ConfigHelper.class);
 
 	/**
 	 * 将指定的xml文件流转化文档模型
@@ -29,20 +28,16 @@ public class ConfigHelper {
 	 * @param _file
 	 *            指定要转换的文件流
 	 * @return 转化后的文档对象
-	 * @throws CMyException
+	 * @throws ConfigException
 	 */
-	public static Document toXMLDocument(File _file) throws CMyException {
+	public static Document toXMLDocument(File _file) throws ConfigException {
 		if (_file == null) {
-			throw new CMyException(ExceptionNumber.ERR_OBJ_NULL,
-					I18NMessage.get(ConfigHelper.class, "ConfigHelper.label1",
-							"指定的XML文件不存在!"));
+			throw new ConfigException(ExceptionNumber.ERR_OBJ_NULL, "指定的XML文件不存在!");
 		}
 		try {
 			return XmlDocWithDom4j.parse(_file.getAbsolutePath());
 		} catch (Exception ex) {
-			throw new CMyException(ExceptionNumber.ERR_XMLFILE_PARSE,
-					I18NMessage.get(ConfigHelper.class, "ConfigHelper.label2",
-							"建立XML Document对象失败!"), ex);
+			throw new ConfigException(ExceptionNumber.ERR_XMLFILE_PARSE, "建立XML Document对象失败!", ex);
 		}
 	}
 
@@ -52,16 +47,15 @@ public class ConfigHelper {
 	 * @param _configFiles
 	 * 
 	 * @return 所有的映射文件的文件流
-	 * @throws CMyException
+	 * @throws ConfigException
 	 */
 	@SuppressWarnings("unchecked")
-	public static InputSource getMappingSource(ConfigFiles _configFiles)
-			throws CMyException {
-		if (_configFiles == null || _configFiles.size()==0)
-			throw new CMyException("缺少编组解组的castor配置文件");
+	public static InputSource getMappingSource(ConfigFiles _configFiles) throws ConfigException {
+		if (_configFiles == null || _configFiles.size() == 0)
+			throw new ConfigException("缺少编组解组的castor配置文件");
 
 		// 所有mapping.xml文件合成的最终文件对象
-		Document coreMapDoc = getMappingDoc(ConfigConstants.getRootMappingFilePath());
+		Document coreMapDoc = getMappingDoc(ConfigConstants.getRootMappingFileInputSteam());
 
 		// 各个mapping.xml文档对象
 		Document pluginMapDoc = null;
@@ -72,8 +66,7 @@ public class ConfigHelper {
 			if (fMapping == null)
 				continue;
 			pluginMapDoc = getMappingDoc(fMapping.getPath());
-			List<Element> nodeList = pluginMapDoc.getRootElement().elements(
-					"class");
+			List<Element> nodeList = pluginMapDoc.getRootElement().elements("class");
 			for (int nodeIndex = nodeList.size(); nodeIndex > 0;) {
 				Element node = nodeList.get(--nodeIndex);
 				node.getParent().remove(node);
@@ -92,10 +85,9 @@ public class ConfigHelper {
 	 * @param _sMappingFile
 	 *            Mapping 文件路径+文件名
 	 * @return 转换后的输入流对象
-	 * @throws CMyException
+	 * @throws ConfigException
 	 */
-	public static InputSource getMappingSource(String _sMappingFile)
-			throws CMyException {
+	public static InputSource getMappingSource(String _sMappingFile) throws ConfigException {
 		return toFileInputSrcFromXmlDocument(getMappingDoc(_sMappingFile));
 	}
 
@@ -116,16 +108,34 @@ public class ConfigHelper {
 	 * @param _sMappingFile
 	 *            Mapping 文件路径+文件名
 	 * @return 转换后的文档对象
-	 * @throws CMyException
+	 * @throws ConfigException
 	 */
-	private static Document getMappingDoc(String _sMappingFile)
-			throws CMyException {
+	private static Document getMappingDoc(String _sMappingFile) throws ConfigException {
 		Document result = null;
 		try {
 			m_logger.debug("Loading the mapping file[" + _sMappingFile + "]");
 			result = XmlDocWithDom4j.parse(_sMappingFile);
 		} catch (Exception ex) {
-			throw new CMyException("读取或解析文件[" + _sMappingFile + "]时出错", ex);
+			throw new ConfigException("读取或解析文件[" + _sMappingFile + "]时出错", ex);
+		}
+		return result;
+	}
+
+	/**
+	 * 通过文件名得到 Mapping 的文档对象
+	 * 
+	 * @param _sMappingFile
+	 *            Mapping 文件路径+文件名
+	 * @return 转换后的文档对象
+	 * @throws ConfigException
+	 */
+	private static Document getMappingDoc(InputStream _inputStream) throws ConfigException {
+		Document result = null;
+		try {
+			m_logger.debug("Loading the mapping file");
+			result = XmlDocWithDom4j.parse(_inputStream);
+		} catch (Exception ex) {
+			throw new ConfigException("读取或解析文件[mapping.xml]时出错", ex);
 		}
 		return result;
 	}

@@ -1,6 +1,6 @@
 package org.xiaotian.config;
 
-import java.io.File;
+import java.io.InputStream;
 
 /**
  * Config的常量定义<BR>
@@ -36,12 +36,11 @@ public final class ConfigConstants {
 	public static final String NAME_FILE_MAPPING = "mapping." + EXT_FILE_CONFIG;
 
 	/**
-	 * 得到系统内部mapping文件配置文件地址
+	 * 得到系统内部mapping文件配置文件地址(该方法兼容读取jar包内部的配置文件)
 	 * 
 	 * @return
 	 */
-	public static String getRootMappingFilePath() {
-		return CURRENT_CLASS_PATH + NAME_FILE_MAPPING;
+	public static InputStream getRootMappingFileInputSteam() {
+		return ConfigConstants.class.getResourceAsStream(NAME_FILE_MAPPING);
 	}
-
 }

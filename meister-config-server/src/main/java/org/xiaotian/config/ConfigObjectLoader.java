@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.mapping.MappingException;
 import org.exolab.castor.xml.Unmarshaller;
 import org.xiaotian.config.bean.ConfigFiles;
-import org.xiaotian.config.bean.ExtensionConfigs;
+import org.xiaotian.config.bean.ExtensionConfig;
+import org.xiaotian.config.bean.IConfigElement;
 import org.xiaotian.config.bean.PluginConfig;
-import org.xiaotian.extend.CMyException;
 
 /**
  * 配置文件的编组解组工具
@@ -36,11 +35,6 @@ public final class ConfigObjectLoader {
 	private Map m_hmExtensionConfigByClassMap = null;
 
 	/**
-	 * Extension Config by Id Map <ElementId, ArrayList(IConfigElement)>
-	 */
-	private Map m_hmExtensionConfigByIdMap = null;
-
-	/**
 	 * Help to search the config files
 	 */
 	private ConfigFilesFinder m_oConfigFileFinder;
@@ -57,7 +51,6 @@ public final class ConfigObjectLoader {
 
 		m_hmPluginConfigMap = new HashMap();
 		m_hmExtensionConfigByClassMap = new HashMap();
-		m_hmExtensionConfigByIdMap = new HashMap();
 	}
 
 	/**
@@ -65,7 +58,6 @@ public final class ConfigObjectLoader {
 	 */
 	public synchronized void clear() {
 		m_hmExtensionConfigByClassMap.clear();
-		m_hmExtensionConfigByIdMap.clear();
 		m_hmPluginConfigMap.clear();
 		m_bLoaded = false;
 	}
@@ -84,7 +76,7 @@ public final class ConfigObjectLoader {
 			try {
 				map.loadMapping(ConfigHelper.getMappingSource(cfgFiles));
 			} catch (Exception ex) {
-				throw new CMyException("装载Castor的mapping文件时出错", ex);
+				throw new ConfigException("装载Castor的mapping文件时出错", ex);
 			}
 
 			for (int nConfigFileIndex = 0; nConfigFileIndex < cfgFiles.size(); nConfigFileIndex++) {
@@ -94,11 +86,11 @@ public final class ConfigObjectLoader {
 					m_hmPluginConfigMap.put(cfgObj.getHostFilePath(), cfgObj);
 					loadExtensionByClassMapFromPlugin(cfgObj);
 				} catch (MappingException ex) {
-					throw new CMyException("分析映射文件失败! (当前分析的配置文件["
+					throw new ConfigException("分析映射文件失败! (当前分析的配置文件["
 							+ cfgFiles.get(nConfigFileIndex).getPlugin()
 									.getPath() + "])", ex);
 				} catch (Exception ex) {
-					throw new CMyException("分析配置文件[config-file="
+					throw new ConfigException("分析配置文件[config-file="
 							+ cfgFiles.get(nConfigFileIndex).getPlugin()
 									.getPath() + "]失败："
 							+ ex.getLocalizedMessage(), ex);
@@ -106,9 +98,9 @@ public final class ConfigObjectLoader {
 
 			}
 			m_bLoaded = true;
-		} catch (CMyException e) {
+		} catch (ConfigException e) {
 			throw new RuntimeException("Load Config File error!"
-					+ CMyException.getStackTraceText(e));
+					+ ConfigException.getStackTraceText(e));
 		}
 	}
 
@@ -117,23 +109,37 @@ public final class ConfigObjectLoader {
 	 * 
 	 * @param _oPlugin
 	 *            配置根对象
+	 * @throws ConfigException 
 	 */
-	private void loadExtensionByClassMapFromPlugin(PluginConfig cfgObj) {
+	private void loadExtensionByClassMapFromPlugin(PluginConfig cfgObj) throws ConfigException {
 		List listExtentions = cfgObj.getExtensions();
 		if (listExtentions.size() == 0)
 			return;
 
 		for (int j = 0; j < listExtentions.size(); j++) {
-			ExtensionConfigs ext = (ExtensionConfigs) listExtentions.get(j);
+			ExtensionConfig ext = (ExtensionConfig) listExtentions.get(j);
+			
+			// 检查<extension>标签的合法性
+			if(!ext.valid()){
+				throw new ConfigException("castor配置文件配置错误");
+			}
+			
 			String sClassName = ext.getClassName();
+			List<IConfigElement> configElements=ext.getConfigElements();
+			
+			// 检查IConfigElement对应标签的合法性
+			for(IConfigElement configElement:configElements){
+				if(!configElement.valid()){
+					throw new ConfigException(configElement.getClass().getName()+"类对应标签配置错误");
+				}
+			}
 
 			if (m_hmExtensionConfigByClassMap.containsKey(sClassName)) {
-				getConfigElementsByClass(sClassName).addAll(
-						ext.getConfigElements());
+				getConfigElementsByClass(sClassName).addAll(configElements);
 				continue;
 			}
 			ArrayList listConfigElements = new ArrayList();
-			listConfigElements.addAll(ext.getConfigElements());
+			listConfigElements.addAll(configElements);
 			m_hmExtensionConfigByClassMap.put(ext.getClassName(),
 					listConfigElements);
 		}

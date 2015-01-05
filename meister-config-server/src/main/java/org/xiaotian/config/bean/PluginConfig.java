@@ -3,16 +3,11 @@ package org.xiaotian.config.bean;
 import java.util.ArrayList;
 
 /**
- * Title: TRS 内容协作平台（TRS WCM） <BR>
- * Description: <BR>
- * TODO <BR>
- * Copyright: Copyright (c) 2004-2005 TRS信息技术有限公司 <BR>
- * Company: TRS信息技术有限公司(www.trs.com.cn) <BR>
+ * castor xml <plugin>标签对应Config实体
  * 
- * @author TRS信息技术有限公司
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
-
 public class PluginConfig {
 	private String m_sHostFilePath = null;
 
@@ -84,7 +79,7 @@ public class PluginConfig {
 		this.extensions = cfgEntities;
 	}
 
-	public void addExtensions(ExtensionConfigs _cfg) {
+	public void addExtensions(ExtensionConfig _cfg) {
 		this.extensions.add(_cfg);
 	}
 

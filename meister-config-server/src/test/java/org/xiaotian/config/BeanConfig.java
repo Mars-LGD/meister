@@ -10,16 +10,11 @@ import org.xiaotian.config.bean.IConfigElement;
 
 
 /**
- * Title: TRS ����Э��ƽ̨��TRS WCM�� <BR>
- * Description: <BR>
- * TODO <BR>
- * Copyright: Copyright (c) 2004-2005 TRS��Ϣ�������޹�˾ <BR>
- * Company: TRS��Ϣ�������޹�˾(www.trs.com.cn) <BR>
+ * 测试用<bean>标签对应实体
  * 
- * @author TRS��Ϣ�������޹�˾
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
-
 public class BeanConfig implements IConfigElement {
     private String id;
 
@@ -74,22 +69,25 @@ public class BeanConfig implements IConfigElement {
         this.isSingleton = isSingleton;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.trs.infra.config.entity.IConfigElement#setName(java.lang.String)
+    /**
+     * @param _sName
      */
     public void setName(String _sName) {
         name = _sName;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.trs.infra.config.entity.IConfigElement#getName()
+    /**
+     * @return name
      */
     public String getName() {
         return name;
     }
+
+	/**
+	 * @see org.xiaotian.config.bean.IConfigElement#valid()
+	 */
+	public boolean valid() {
+		return true;
+	}
 
 }

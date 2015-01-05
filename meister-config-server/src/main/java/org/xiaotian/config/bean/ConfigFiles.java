@@ -2,6 +2,12 @@ package org.xiaotian.config.bean;
 
 import java.util.ArrayList;
 
+/**
+ * ConfigFile文件对集合
+ * 
+ * @author xiaotian15
+ * 
+ */
 public class ConfigFiles {
     private ArrayList<ConfigFile> files = null;
 

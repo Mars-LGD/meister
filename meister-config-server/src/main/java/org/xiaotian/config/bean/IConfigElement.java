@@ -1,37 +1,20 @@
-/**
- * Created:         2005-5-11 8:59:47
- * Last Modified:   2005-5-11/2005-5-11
- * Description:
- *      class ICfgEntity
- */
 package org.xiaotian.config.bean;
 
-
+import org.xiaotian.config.ConfigException;
 
 /**
- * Title: TRS 内容协作平台（TRS WCM） <BR>
- * Description: <BR>
- * 所有配置对象的接口声明 <BR>
- * Copyright: Copyright (c) 2004-2005 TRS信息技术有限公司 <BR>
- * Company: TRS信息技术有限公司(www.trs.com.cn) <BR>
+ * castor xml标签对应实体标记接口
  * 
- * @author TRS信息技术有限公司
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
+public interface IConfigElement {
+	
+	/**
+	 * xml标签对应实体有效性验证
+	 * 
+	 * @return	验证是否成功，成功返回true，不成功返回false
+	 */
+	public boolean valid() throws ConfigException;
 
-public interface IConfigElement extends IXmlPersistentObject {
-    /**
-     * 设置配置对象的名称
-     * 
-     * @param _sName
-     *            配置对象的名称
-     */
-    public void setName(String _sName);
-
-    /**
-     * 获取配置对象的名称
-     * 
-     * @return 配置对象的名称
-     */
-    public String getName();
 }

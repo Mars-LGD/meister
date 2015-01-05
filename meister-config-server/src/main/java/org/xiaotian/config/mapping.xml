@@ -12,15 +12,12 @@
 		<field name="version">
 			<bind-xml name="version" node="attribute" />
 		</field>
-		<field name="extensions" type="org.xiaotian.config.bean.ExtensionConfigs" collection="collection">
+		<field name="extensions" type="org.xiaotian.config.bean.ExtensionConfig" collection="collection">
 			<bind-xml name="extension" />
 		</field>
 	</class>
-	<class name="org.xiaotian.config.bean.ExtensionConfigs" identity="id" auto-complete="true">
+	<class name="org.xiaotian.config.bean.ExtensionConfig" identity="id" auto-complete="true">
 		<map-to xml="extension" />
-		<field name="id">
-			<bind-xml name="id" node="attribute" />
-		</field>
 		<field name="className">
 			<bind-xml name="element-class" node="attribute" />
 		</field>

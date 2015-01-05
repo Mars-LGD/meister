@@ -9,19 +9,22 @@ package org.xiaotian.config.bean;
 import java.io.File;
 
 /**
- * Title: TRS 内容协作平台（TRS WCM） <BR>
- * Description: <BR>
- * TODO <BR>
- * Copyright: Copyright (c) 2004-2005 TRS信息技术有限公司 <BR>
- * Company: TRS信息技术有限公司(www.trs.com.cn) <BR>
+ * ConfigFile文件对（config.xml-mapping.xml）
  * 
- * @author TRS信息技术有限公司
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
-
 public class ConfigFile {
+	
+	
+    /**
+     * config.xml
+     */
     private File plugin;
 
+    /**
+     * mapping.xml
+     */
     private File mapping;
 
     /**

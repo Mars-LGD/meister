@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.xiaotian.base.server.BaseServer;
-import org.xiaotian.exception.WCMException;
 
 /**
  * 对可配置对象的顶层管理类
@@ -67,14 +66,14 @@ public class XMLConfigServer extends BaseServer {
 	 * 
 	 * @see com.trs.infra.BaseServer#doStart()
 	 */
-	protected boolean doStart() throws WCMException {
+	protected boolean doStart() throws ConfigException {
 		try {
 			if (this.m_bIsStarted)
 				return false;
 			m_oConfigObjectLoader.load();
 			return true;
 		} catch (Exception ex) {
-			throw new WCMException("初始化配置服务器失败", ex);
+			throw new ConfigException("初始化配置服务器失败", ex);
 		}
 	}
 

@@ -1,14 +1,11 @@
 package org.xiaotian.config.server;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.xiaotian.config.BeanConfig;
-import org.xiaotian.config.ConfigConstants;
 import org.xiaotian.config.XMLConfigServer;
 
 public class XMLConfigServerTest {
@@ -21,7 +18,6 @@ public class XMLConfigServerTest {
 		for (BeanConfig bean : list) {
 			System.out.println(bean.getClassName());
 		}
-		System.out.println(ConfigConstants.getRootMappingFilePath());
 	}
 
 	@Test
