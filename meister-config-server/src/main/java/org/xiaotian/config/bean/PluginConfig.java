@@ -17,10 +17,10 @@ public class PluginConfig {
 
 	private String version;
 
-	private ArrayList extensions;
+	private ArrayList<IConfigElement> extensions;
 
 	public PluginConfig() {
-		this.extensions = new ArrayList();
+		this.extensions = new ArrayList<IConfigElement>();
 	}
 
 	/**
@@ -68,14 +68,14 @@ public class PluginConfig {
 	/**
 	 * @return
 	 */
-	public ArrayList getExtensions() {
+	public ArrayList<IConfigElement> getExtensions() {
 		return extensions;
 	}
 
 	/**
 	 * @param cfgEntities
 	 */
-	public void setExtensions(ArrayList cfgEntities) {
+	public void setExtensions(ArrayList<IConfigElement> cfgEntities) {
 		this.extensions = cfgEntities;
 	}
 
