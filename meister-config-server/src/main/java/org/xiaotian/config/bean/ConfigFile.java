@@ -1,9 +1,3 @@
-/**
- * Created:         2005-5-24 15:42:05
- * Last Modified:   2005-5-24/2005-5-24
- * Description:
- *      class ConfigFile
- */
 package org.xiaotian.config.bean;
 
 import java.io.File;

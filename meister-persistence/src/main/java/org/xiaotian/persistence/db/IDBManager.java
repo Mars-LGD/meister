@@ -1,4 +1,4 @@
-package org.xiaotian.db;
+package org.xiaotian.persistence.db;
 
 import java.sql.Connection;
 

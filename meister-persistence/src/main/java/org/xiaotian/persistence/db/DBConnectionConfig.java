@@ -1,4 +1,4 @@
-package org.xiaotian.db.config;
+package org.xiaotian.persistence.db;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;

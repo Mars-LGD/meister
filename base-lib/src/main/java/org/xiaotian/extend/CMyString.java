@@ -73,19 +73,6 @@ public class CMyString {
 	}
 
 	/**
-	 * 判断指定字符串是否为空
-	 * 
-	 * @param _string
-	 *            指定的字符串
-	 * @return 若字符串为空对象（_string==null）或空串（长度为0），则返回true；否则，返回false.
-	 * @deprecated 由函数 isEmpty 替换
-	 * @see isEmpty( String _string )
-	 */
-	public static boolean isEmptyStr(String _string) {
-		return ((_string == null) || (_string.trim().length() == 0));
-	}
-
-	/**
 	 * 字符串显示处理函数：若为空对象，则返回指定的字符串
 	 * 
 	 * @see showNull( String _sValue, String _sReplaceIfNull )
@@ -2352,12 +2339,32 @@ public class CMyString {
 		return sb.toString();
 	}
 
+	/**
+	 * 首字母大写
+	 * 
+	 * @param _strValue
+	 * @return
+	 */
 	public static String capitalize(String _strValue) {
 		if (isEmpty(_strValue))
 			return _strValue;
 		char first = _strValue.charAt(0);
 		char capitalized = Character.toUpperCase(first);
 		return (first == capitalized) ? _strValue : capitalized + _strValue.substring(1);
+	}
+
+	/**
+	 * 首字母小写
+	 * 
+	 * @param _strValue
+	 * @return
+	 */
+	public static String uncapitalize(String _strValue) {
+		if (isEmpty(_strValue))
+			return _strValue;
+		char first = _strValue.charAt(0);
+		char uncapitalized = Character.toLowerCase(first);
+		return (first == uncapitalized) ? _strValue : uncapitalized + _strValue.substring(1);
 	}
 
 	/**
@@ -2724,6 +2731,59 @@ public class CMyString {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * 将骆峰字符串转换为指定字符连接的字符串
+	 * 
+	 * @param _sParam
+	 *            待转换的字符串
+	 * @param _sConnector
+	 *            字符串连接符
+	 * @return
+	 */
+	public static String camelToUnderline(String _sParam, char _sConnector) {
+		if (isEmpty(_sParam)) {
+			return "";
+		}
+		int len = _sParam.length();
+		StringBuilder sb = new StringBuilder(len);
+		for (int i = 0; i < len; i++) {
+			char c = _sParam.charAt(i);
+			if (Character.isUpperCase(c)) {
+				sb.append(_sConnector);
+				sb.append(Character.toLowerCase(c));
+			} else {
+				sb.append(c);
+			}
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * 将指定字符连接的字符串转换为骆峰
+	 * 
+	 * @param _sParam 待转换的字符串
+	 * @param _sConnector 字符串连接符
+	 * @return
+	 */
+	public static String underlineToCamel(String _sParam, char _sConnector) {
+		if (isEmpty(_sParam)) {
+			return "";
+		}
+		int len = _sParam.length();
+		StringBuilder sb = new StringBuilder(len);
+		for (int i = 0; i < len; i++) {
+			char c = _sParam.charAt(i);
+			if (c == _sConnector) {
+				if (++i < len) {
+					sb.append(Character.toUpperCase(_sParam.charAt(i)));
+				}
+			} else {
+				sb.append(c);
+			}
+		}
+		return sb.toString();
 	}
 
 	/**

@@ -7,16 +7,11 @@ import org.xiaotian.extend.CMyException;
 import org.xiaotian.language.I18NMessage;
 
 /**
- * Title: TRS 内容协作平台（TRS WCM） <BR>
- * Description: <BR>
- * Server基类 <BR>
- * Copyright: Copyright (c) 2004-2005 TRS信息技术有限公司 <BR>
- * Company: TRS信息技术有限公司(www.trs.com.cn) <BR>
+ * server基类
  * 
- * @author TRS信息技术有限公司
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
-
 public abstract class BaseServer implements IServer {
     /** 版本信息 */
     public final static String APP_VERSION = "5.1"; // 版本信息

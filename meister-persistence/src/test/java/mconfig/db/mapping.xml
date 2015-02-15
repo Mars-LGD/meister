@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapping>
-	<class name="org.xiaotian.db.config.DBConnectionConfig" identity="id" auto-complete="true">
+	<class name="org.xiaotian.persistence.db.DBConnectionConfig" identity="id" auto-complete="true">
 		<map-to xml="datasource" />
 		<field name="id" type="string">
 			<bind-xml name="id" node="attribute" />

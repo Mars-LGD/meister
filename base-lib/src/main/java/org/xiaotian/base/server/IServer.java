@@ -4,16 +4,11 @@ import org.xiaotian.exception.WCMException;
 import org.xiaotian.extend.CMyErrors;
 
 /**
- * Title: TRS 内容协作平台（TRS WCM） <BR>
- * Description: <BR>
- * TODO <BR>
- * Copyright: Copyright (c) 2004-2005 TRS信息技术有限公司 <BR>
- * Company: TRS信息技术有限公司(www.trs.com.cn) <BR>
+ * server接口
  * 
- * @author TRS信息技术有限公司
- * @version 1.0
+ * @author xiaotian15
+ * 
  */
-
 public interface IServer {
 
 	/**

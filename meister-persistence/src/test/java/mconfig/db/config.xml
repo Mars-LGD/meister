@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin version="1.0" id="db.connnection">
+	<extension element-class="org.xiaotian.persistence.db.DBConnectionConfig">
+		<datasource id="haoma90">
+			<url>jdbc:mysql://10.12.135.90:3306/telephone_blacklist?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull</url>
+			<driver>com.mysql.jdbc.Driver</driver>
+			<username>test</username>
+			<password>test</password>
+			<maxActive>10</maxActive>
+			<maxIdle>5</maxIdle>
+			<minIdle>2</minIdle>
+			<initialSize>2</initialSize>
+			<validationQuery>select 1</validationQuery>
+		</datasource>
+		<datasource id="haoma23">
+			<url>jdbc:mysql://10.136.37.23:3306/mobile_haoma?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull</url>
+			<driver>com.mysql.jdbc.Driver</driver>
+			<username>dt_haoma</username>
+			<password>dt_haoma</password>
+			<maxActive>10</maxActive>
+			<maxIdle>5</maxIdle>
+			<minIdle>2</minIdle>
+			<initialSize>2</initialSize>
+			<validationQuery>select 1</validationQuery>
+		</datasource>
+	</extension>
+</plugin>
