@@ -26,7 +26,7 @@ import org.xiaotian.persistence.db.DBManager;
 import org.xiaotian.persistence.db.PersistenceException;
 import org.xiaotian.persistence.model.CustomBeanProcessor;
 import org.xiaotian.persistence.model.PageModel;
-import org.xiaotian.utils.ReflectionUtils;
+import org.xiaotian.utils.ReflectionUtil;
 
 /**
  * BaseDao适配实现类
@@ -113,7 +113,7 @@ public class BaseDaoAdapter<T> implements BaseDao<T> {
 			Map<String, Object> props = new HashMap<String, Object>();
 			for (String fieldName : m_lFieldList) {
 				String dbField = CMyString.camelToUnderline(fieldName, '_');
-				props.put(dbField, ReflectionUtils.getFieldValue(_oEntity, fieldName));
+				props.put(dbField, ReflectionUtil.getFieldValue(_oEntity, fieldName));
 			}
 			return props;
 		} catch (Exception e) {
@@ -232,7 +232,7 @@ public class BaseDaoAdapter<T> implements BaseDao<T> {
 				sql.append(',');
 			sql.append(dbFields[i]).append("=?");
 		}
-		sql.append(" where ").append(m_sIdFieldName).append("=").append(ReflectionUtils.getFieldValue(_oEntity, m_sIdFieldName));
+		sql.append(" where ").append(m_sIdFieldName).append("=").append(ReflectionUtil.getFieldValue(_oEntity, m_sIdFieldName));
 
 		Object[] params = new Object[dbFields.length];
 		for (int i = 0; i < dbFields.length; i++) {
