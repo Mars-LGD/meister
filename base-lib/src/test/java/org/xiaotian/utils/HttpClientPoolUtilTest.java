@@ -17,9 +17,9 @@ public class HttpClientPoolUtilTest {
 			service.execute(new Runnable() {
 				public void run() {
 					try {
-						String str=HttpClientPoolUtil.get("http://10.136.37.23:55443/qn?phone=7747300152");
+						String str=HttpClientPoolUtils.get("http://10.136.37.23:55443/qn?phone=7747300152");
 					} catch (Exception e) {
-						PoolingHttpClientConnectionManager connManager=HttpClientPoolUtil.getConnectionManager();
+						PoolingHttpClientConnectionManager connManager=HttpClientPoolUtils.getConnectionManager();
 						System.out.println(connManager.getTotalStats().getLeased());
 						e.printStackTrace();
 					}
@@ -30,7 +30,7 @@ public class HttpClientPoolUtilTest {
 			
 			public void run() {
 				while(true){
-					PoolingHttpClientConnectionManager connManager=HttpClientPoolUtil.getConnectionManager();
+					PoolingHttpClientConnectionManager connManager=HttpClientPoolUtils.getConnectionManager();
 					System.out.println(connManager.getTotalStats().getLeased());
 					try {
 						Thread.sleep(1000);

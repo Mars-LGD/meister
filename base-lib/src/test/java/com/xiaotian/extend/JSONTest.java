@@ -1,7 +1,8 @@
 package com.xiaotian.extend;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.xiaotian.json.JSONException;
+import org.xiaotian.json.JSONObject;
+
 
 public class JSONTest {
 	

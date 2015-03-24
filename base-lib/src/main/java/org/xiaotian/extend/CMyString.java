@@ -2763,8 +2763,10 @@ public class CMyString {
 	/**
 	 * 将指定字符连接的字符串转换为骆峰
 	 * 
-	 * @param _sParam 待转换的字符串
-	 * @param _sConnector 字符串连接符
+	 * @param _sParam
+	 *            待转换的字符串
+	 * @param _sConnector
+	 *            字符串连接符
 	 * @return
 	 */
 	public static String underlineToCamel(String _sParam, char _sConnector) {
@@ -2784,6 +2786,25 @@ public class CMyString {
 			}
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * 判断字符串的字符是否全部为数字
+	 *  
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNumeric(String str) {
+		if (str == null) {
+			return false;
+		}
+		int sz = str.length();
+		for (int i = 0; i < sz; i++) {
+			if (Character.isDigit(str.charAt(i)) == false) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
