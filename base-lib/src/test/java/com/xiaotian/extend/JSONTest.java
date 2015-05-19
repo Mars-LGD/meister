@@ -1,7 +1,7 @@
 package com.xiaotian.extend;
 
-import org.xiaotian.json.JSONException;
-import org.xiaotian.json.JSONObject;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 
 
 public class JSONTest {
@@ -11,7 +11,6 @@ public class JSONTest {
 		try {
 			jsonObj.put("1", "hello");
 			String str=jsonObj.toString();
-			System.out.println(new JSONObject(str));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

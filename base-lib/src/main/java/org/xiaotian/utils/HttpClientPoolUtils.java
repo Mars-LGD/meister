@@ -56,7 +56,7 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import org.xiaotian.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 public class HttpClientPoolUtils {
 
